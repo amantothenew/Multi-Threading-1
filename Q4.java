@@ -13,14 +13,13 @@ public class Main {
     }
 }
 
-
 class FirstTask implements Runnable {
     public void run() {
         synchronized (Main.lock1) {
             System.out.println("Thread 1: locked resource 1");
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(100); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -35,7 +34,7 @@ class FirstTask implements Runnable {
 
 class SecondTask implements Runnable {
     public void run() {
-        synchronized (Main.lock1) {
+        synchronized (Main.lock2) {
             System.out.println("Thread 2: locked resource 2");
 
             try {
@@ -45,7 +44,7 @@ class SecondTask implements Runnable {
             }
 
             System.out.println("Thread 2: trying to lock resource 1...");
-            synchronized (Main.lock2) {
+            synchronized (Main.lock1) {
                 System.out.println("Thread 2: locked resource 1");
             }
         }
